@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Lily Wren{% endblock %}
+
+{% block content %}
+  <h2>Welcome to Lily Wren CRM</h2>
+  <p>This is your secure home base for managing clients and jobs.</p>
+  <a href="{{ url_for('list_customers') }}" class="btn">View Customers</a>
+{% endblock %}

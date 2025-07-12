@@ -1,0 +1,23 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables / secrets
+.env
+
+# SQLite database
+*.sqlite3
+*.db
+
+# VSCode and MacOS junk files
+.vscode/
+.DS_Store
+
+# Flask instance and logs
+instance/
+*.log

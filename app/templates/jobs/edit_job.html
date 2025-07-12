@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Edit Job{% endblock %}
+
+{% block content %}
+  <h2>Edit Job</h2>
+
+  <form method="POST" class="form-container">
+    <label for="customer_id">Customer</label>
+    <select name="customer_id">
+      {% for customer in customers %}
+        <option value="{{ customer.id }}"
+          {% if customer.id == job.customer_id %}selected{% endif %}>
+          {{ customer.name }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <label for="service_type">Service Type</label>
+    <input type="text" name="service_type" value="{{ job.service_type }}">
+
+    <label for="date">Date</label>
+    <input type="date" name="date" value="{{ job.date.strftime('%Y-%m-%d') }}">
+
+    <label for="status">Status</label>
+    <select name="status">
+      <option value="Scheduled" {% if job.status == 'Scheduled' %}selected{% endif %}>Scheduled</option>
+      <option value="Completed" {% if job.status == 'Completed' %}selected{% endif %}>Completed</option>
+      <option value="Cancelled" {% if job.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+    </select>
+
+    <button type="submit" class="btn">Update Job</button>
+  </form>
+{% endblock %}

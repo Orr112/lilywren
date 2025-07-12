@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Jobs - Lily Wren{% endblock %}
+
+{% block content %}
+  <h2 class="page-title">Scheduled Jobs</h2>
+
+  <div class="top-actions">
+    <a href="{{ url_for('add_job') }}" class="btn">+ Add New Job</a>
+  </div>
+
+  <table class="zen-table">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+      <tr>
+        <td>{{ job.customer.name }}</td>
+        <td>{{ job.service_type }}</td>
+        <td>{{ job.job_date.strftime('%Y-%m-%d') if job.job_date else 'N/A' }}</td>
+        <td>{{ job.status }}</td>
+        <td>
+          <a href="{{ url_for('edit_job', job_id=job.id) }}" class="action-icon">✏️</a>
+          <a href="{{ url_for('delete_job', job_id=job.id) }}"
+             class="action-icon"
+             onclick="return confirm('Are you sure you want to delete this job?');">🗑️</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="text-center">No jobs scheduled yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
